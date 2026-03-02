@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RRY Fashion — Premium Clothing</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0d0d0d;--cream:#f8f5f0;--white:#fff;--gold:#b8924a;--gold-l:#d4aa6a;--gray:#888;--light:#f0ece6;--border:#e5e0d8;--success:#1a9e5c;--danger:#c0392b;--blue:#2563eb;--shadow:0 4px 24px rgba(0,0,0,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:68px;background:var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 6%;border-bottom:1px solid rgba(184,146,74,0.2);}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:700;color:var(--white);letter-spacing:3px;cursor:pointer;}
+.logo em{color:var(--gold);font-style:normal;}
+.nav-links{display:flex;align-items:center;gap:2rem;}
+.nav-links a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;font-weight:500;cursor:pointer;transition:color .25s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-right{display:flex;align-items:center;gap:1rem;}
+.cart-pill{display:flex;align-items:center;gap:8px;background:var(--gold);color:var(--ink);padding:8px 20px;font-weight:700;font-size:0.78rem;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;border:none;transition:background .25s;}
+.cart-pill:hover{background:var(--gold-l);}
+.cart-badge{background:var(--ink);color:var(--gold);width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:0.68rem;font-weight:800;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--white);}
+
+/* ─── PAGES ─── */
+.page{display:none;min-height:100vh;padding-top:68px;}
+.page.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+.fade{animation:fadeUp .45s ease both;}
+
+/* ─── HOME ─── */
+.hero{min-height:calc(100vh - 68px);background:var(--ink);display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:5rem 8% 4rem;gap:4rem;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 72% 50%,rgba(184,146,74,0.07) 0%,transparent 70%);}
+.h-label{font-size:0.7rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:1.2rem;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:700;color:var(--white);line-height:1.0;margin-bottom:1.4rem;}
+.hero h1 em{font-style:italic;color:var(--gold);}
+.hero-sub{color:rgba(255,255,255,0.5);font-size:0.95rem;line-height:1.8;max-width:400px;margin-bottom:2.5rem;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-gold{background:var(--gold);color:var(--ink);border:none;padding:13px 34px;font-family:'Outfit',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .25s;}
+.btn-gold:hover{background:var(--gold-l);transform:translateY(-2px);}
+.btn-ghost{background:transparent;color:rgba(255,255,255,0.75);border:1px solid rgba(255,255,255,0.2);padding:13px 34px;font-family:'Outfit',sans-serif;font-size:0.82rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .25s;}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+.hero-frame{aspect-ratio:4/5;background:linear-gradient(160deg,#1a1a1a,#111);border:1px solid rgba(184,146,74,0.15);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.hero-frame::after{content:'RRY';font-family:'Cormorant Garamond',serif;font-size:13rem;font-weight:700;color:rgba(184,146,74,0.04);position:absolute;}
+.features{display:grid;grid-template-columns:repeat(3,1fr);background:var(--white);border-top:1px solid var(--border);}
+.feat{padding:2.5rem 3rem;border-right:1px solid var(--border);}
+.feat:last-child{border-right:none;}
+.feat-icon{font-size:1.6rem;margin-bottom:1rem;}
+.feat h3{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;margin-bottom:0.5rem;}
+.feat p{font-size:0.83rem;color:var(--gray);line-height:1.7;}
+
+/* ─── SHOP ─── */
+.shop-head{padding:3.5rem 6% 1.5rem;border-bottom:1px solid var(--border);}
+.shop-head h1{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:700;margin-bottom:0.4rem;}
+.shop-head p{color:var(--gray);font-size:0.88rem;}
+.filters-bar{padding:1.2rem 6%;display:flex;gap:0.8rem;flex-wrap:wrap;align-items:center;background:var(--white);border-bottom:1px solid var(--border);}
+.f-lbl{font-size:0.7rem;letter-spacing:2.5px;text-transform:uppercase;font-weight:600;color:var(--gray);}
+.f-sel{border:1px solid var(--border);padding:7px 12px;font-family:'Outfit',sans-serif;font-size:0.83rem;background:var(--white);cursor:pointer;outline:none;transition:border-color .2s;}
+.f-sel:focus{border-color:var(--ink);}
+.f-clear{background:none;border:1px solid var(--border);padding:7px 14px;font-family:'Outfit',sans-serif;font-size:0.78rem;color:var(--gray);cursor:pointer;transition:all .2s;}
+.f-clear:hover{border-color:var(--ink);color:var(--ink);}
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));padding:0 6% 5rem;}
+.p-card{cursor:pointer;border:1px solid transparent;transition:all .3s;position:relative;}
+.p-card:hover{border-color:var(--border);transform:translateY(-4px);box-shadow:var(--shadow);}
+.p-card:hover .p-ov{opacity:1;}
+.p-card:hover .p-img img{transform:scale(1.05);}
+.p-img{aspect-ratio:3/4;background:var(--light);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.p-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+.p-ph{font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:700;color:rgba(0,0,0,0.05);}
+.p-ov{position:absolute;inset:0;background:rgba(13,13,13,0.68);display:flex;align-items:flex-end;padding:1.2rem;opacity:0;transition:opacity .3s;}
+.p-ov-btns{display:flex;gap:0.5rem;width:100%;}
+.p-ov-btns button{flex:1;padding:9px 4px;font-family:'Outfit',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border:none;transition:all .2s;}
+.p-ob1{background:var(--white);color:var(--ink);}
+.p-ob1:hover{background:var(--gold);}
+.p-ob2{background:var(--gold);color:var(--ink);}
+.p-ob2:hover{background:var(--gold-l);}
+.p-bdg{position:absolute;top:12px;left:12px;background:var(--ink);color:var(--gold);font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;padding:3px 9px;font-weight:700;}
+.p-info{padding:1.1rem 1rem 1.6rem;}
+.p-cat{font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:0.35rem;}
+.p-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;margin-bottom:0.35rem;}
+.p-price{font-weight:700;font-size:0.95rem;}
+.p-szs{margin-top:0.4rem;display:flex;gap:0.3rem;flex-wrap:wrap;}
+.sz{font-size:0.62rem;border:1px solid var(--border);padding:2px 6px;color:var(--gray);}
+
+/* ─── DETAIL ─── */
+.det-wrap{display:grid;grid-template-columns:1fr 1fr;gap:5rem;padding:4.5rem 8%;max-width:1250px;margin:0 auto;}
+.d-img{aspect-ratio:3/4;background:var(--light);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.d-img img{width:100%;height:100%;object-fit:cover;}
+.d-ph{font-family:'Cormorant Garamond',serif;font-size:9rem;font-weight:700;color:rgba(0,0,0,0.05);}
+.d-info{padding-top:1.5rem;display:flex;flex-direction:column;gap:1.3rem;}
+.d-cat{font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:600;}
+.d-name{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:700;line-height:1.05;}
+.d-price{font-size:1.9rem;font-weight:700;}
+.d-desc{color:var(--gray);line-height:1.85;font-size:0.88rem;}
+.d-div{border:none;border-top:1px solid var(--border);}
+.d-sz-lbl{font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;font-weight:700;margin-bottom:0.7rem;}
+.d-szs{display:flex;gap:0.5rem;flex-wrap:wrap;}
+.d-sz{width:44px;height:44px;border:1.5px solid var(--border);display:grid;place-items:center;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all .2s;}
+.d-sz:hover,.d-sz.sel{border-color:var(--ink);background:var(--ink);color:var(--white);}
+.d-qty-row{display:flex;align-items:center;gap:1.2rem;}
+.d-qty-lbl{font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;font-weight:700;}
+.qty-c{display:flex;align-items:center;border:1.5px solid var(--border);}
+.qty-c button{width:36px;height:36px;background:none;border:none;font-size:1.1rem;cursor:pointer;}
+.qty-c button:hover{background:var(--light);}
+.qty-c input{width:46px;text-align:center;border:none;border-left:1.5px solid var(--border);border-right:1.5px solid var(--border);height:36px;font-family:'Outfit',sans-serif;font-size:0.9rem;font-weight:600;outline:none;}
+.d-stock{font-size:0.78rem;color:var(--gray);}
+.d-acts{display:flex;gap:0.8rem;}
+.d-act{flex:1;padding:14px;font-family:'Outfit',sans-serif;font-weight:700;font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border:none;transition:all .25s;}
+.d-ac{background:var(--ink);color:var(--white);}
+.d-ac:hover{background:#222;}
+.d-ab{background:var(--gold);color:var(--ink);}
+.d-ab:hover{background:var(--gold-l);}
+.back-btn{display:inline-flex;align-items:center;gap:8px;color:var(--gray);font-size:0.8rem;cursor:pointer;padding:2rem 8%;text-decoration:none;}
+.back-btn:hover{color:var(--ink);}
+
+/* ─── CART ─── */
+.cart-wrap{max-width:920px;margin:0 auto;padding:4rem 6%;}
+.cart-wrap h1{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:700;margin-bottom:2rem;}
+.ci{background:var(--white);display:flex;gap:1.3rem;padding:1.3rem;margin-bottom:1px;align-items:center;}
+.ci-img{width:78px;height:96px;background:var(--light);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:rgba(0,0,0,0.1);flex-shrink:0;overflow:hidden;}
+.ci-img img{width:100%;height:100%;object-fit:cover;}
+.ci-info{flex:1;}
+.ci-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:700;}
+.ci-sz{font-size:0.78rem;color:var(--gray);margin-top:3px;}
+.ci-pr{font-weight:700;margin-top:5px;color:var(--gold);}
+.ci-r{display:flex;flex-direction:column;align-items:flex-end;gap:0.7rem;}
+.ci-qty{display:flex;align-items:center;gap:4px;border:1px solid var(--border);}
+.ci-qty button{width:28px;height:28px;border:none;background:none;cursor:pointer;font-size:1rem;}
+.ci-qty button:hover{background:var(--light);}
+.ci-qty span{min-width:30px;text-align:center;font-weight:700;font-size:0.88rem;}
+.ci-tot{font-weight:700;}
+.ci-rm{background:none;border:none;color:var(--danger);font-size:0.72rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;}
+.sum-box{background:var(--white);padding:2rem;margin-top:2px;}
+.sum-row{display:flex;justify-content:space-between;font-size:0.88rem;margin-bottom:0.6rem;color:var(--gray);}
+.sum-row.tot{font-weight:700;font-size:1.05rem;color:var(--ink);border-top:1px solid var(--border);padding-top:0.8rem;margin-top:0.8rem;}
+.sum-co{width:100%;padding:14px;background:var(--ink);color:var(--white);border:none;font-family:'Outfit',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;margin-top:1.2rem;transition:background .25s;}
+.sum-co:hover{background:#222;}
+.empty-msg{text-align:center;padding:5rem 2rem;}
+.empty-msg h2{font-family:'Cormorant Garamond',serif;font-size:2rem;margin-bottom:0.8rem;}
+.empty-msg p{color:var(--gray);margin-bottom:2rem;}
+
+/* ════════════════════════════════════════
+   ANIMATED STEP-BY-STEP CHECKOUT GATEWAY
+════════════════════════════════════════ */
+.cko-page{background:var(--ink);min-height:calc(100vh - 68px);}
+.cko-progress{position:sticky;top:68px;z-index:100;background:rgba(13,13,13,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(184,146,74,0.15);padding:0 6%;}
+.cko-steps{display:flex;align-items:stretch;max-width:900px;margin:0 auto;}
+.cko-stp{flex:1;display:flex;flex-direction:column;align-items:center;padding:1rem 0.5rem;position:relative;border-bottom:2px solid transparent;transition:border-color .4s;gap:5px;}
+.cko-stp.active{border-bottom-color:var(--gold);}
+.cko-stp.done{border-bottom-color:rgba(26,158,92,0.6);}
+.cko-stp-dot{width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;color:rgba(255,255,255,0.25);transition:all .5s;}
+.cko-stp.active .cko-stp-dot{border-color:var(--gold);color:var(--gold);box-shadow:0 0 16px rgba(184,146,74,0.3);}
+.cko-stp.done .cko-stp-dot{background:var(--success);border-color:var(--success);color:#fff;font-size:0.85rem;}
+.cko-stp-lbl{font-size:0.55rem;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:rgba(255,255,255,0.2);transition:color .4s;white-space:nowrap;}
+.cko-stp.active .cko-stp-lbl{color:var(--gold);}
+.cko-stp.done .cko-stp-lbl{color:rgba(26,158,92,0.75);}
+.cko-stp:not(:last-child)::after{content:'';position:absolute;top:calc(1rem + 15px);right:0;width:100%;height:1px;background:rgba(255,255,255,0.06);transform:translateX(50%);z-index:-1;}
+
+.cko-panel{display:none;animation:ckoIn .5s cubic-bezier(0.22,1,0.36,1) both;}
+.cko-panel.active{display:block;}
+@keyframes ckoIn{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.cko-inner{max-width:720px;margin:0 auto;padding:3rem 5%;}
+
+.cko-phdr{margin-bottom:2.5rem;text-align:center;}
+.cko-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(184,146,74,0.07);border:1px solid rgba(184,146,74,0.22);color:var(--gold);padding:5px 14px;font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;font-weight:700;margin-bottom:1rem;}
+.cko-ptitle{font-family:'Cormorant Garamond',serif;font-size:2.1rem;font-weight:700;color:var(--white);line-height:1.05;margin-bottom:0.5rem;}
+.cko-ptitle em{font-style:italic;color:var(--gold);}
+.cko-psub{color:rgba(255,255,255,0.3);font-size:0.82rem;line-height:1.7;}
+
+.cko-card{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);padding:1.8rem;margin-bottom:1.3rem;transition:border-color .3s;}
+.cko-card:hover{border-color:rgba(184,146,74,0.18);}
+.cko-ctitle{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:1.2rem;padding-bottom:0.7rem;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:8px;}
+
+.ck-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.ck-full{grid-column:1/-1;}
+.ck-fld label{display:block;font-size:0.6rem;letter-spacing:2.5px;text-transform:uppercase;font-weight:600;color:rgba(255,255,255,0.3);margin-bottom:0.42rem;}
+.ck-fld input,.ck-fld textarea{width:100%;background:rgba(255,255,255,0.035);border:1.5px solid rgba(255,255,255,0.09);padding:11px 13px;font-family:'Outfit',sans-serif;font-size:0.88rem;color:var(--white);outline:none;transition:border-color .3s,background .3s;}
+.ck-fld input::placeholder,.ck-fld textarea::placeholder{color:rgba(255,255,255,0.18);}
+.ck-fld input:focus,.ck-fld textarea:focus{border-color:var(--gold);background:rgba(184,146,74,0.04);}
+.ck-fld textarea{resize:vertical;min-height:76px;}
+
+.ck-item{display:flex;align-items:center;gap:1.1rem;padding:0.9rem 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.ck-item:last-of-type{border-bottom:none;}
+.ck-thumb{width:58px;height:72px;background:rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;overflow:hidden;border:1px solid rgba(255,255,255,0.06);}
+.ck-thumb img{width:100%;height:100%;object-fit:cover;}
+.ck-iname{font-weight:700;font-size:0.88rem;color:var(--white);}
+.ck-isub{font-size:0.73rem;color:rgba(255,255,255,0.3);margin-top:2px;}
+.ck-iprice{font-weight:700;color:var(--gold);margin-left:auto;font-size:0.92rem;}
+
+.ck-sum{background:rgba(184,146,74,0.04);border:1px solid rgba(184,146,74,0.1);padding:1.1rem 1.4rem;margin-top:0.8rem;}
+.ck-srow{display:flex;justify-content:space-between;font-size:0.83rem;color:rgba(255,255,255,0.38);margin-bottom:0.45rem;}
+.ck-srow.grand{font-weight:700;font-size:1rem;color:var(--gold);border-top:1px solid rgba(184,146,74,0.15);padding-top:0.6rem;margin-top:0.6rem;}
+
+.ck-delpill{display:flex;align-items:center;gap:1.1rem;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);padding:1rem 1.3rem;margin-bottom:1.3rem;}
+.ck-del-icon{font-size:1.3rem;}
+.ck-del-name{font-weight:700;font-size:0.88rem;color:var(--white);}
+.ck-del-addr{font-size:0.76rem;color:rgba(255,255,255,0.35);margin-top:2px;}
+.ck-edit-btn{margin-left:auto;background:none;border:1px solid rgba(184,146,74,0.25);color:var(--gold);padding:5px 11px;font-size:0.6rem;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;font-family:'Outfit',sans-serif;font-weight:700;transition:all .3s;}
+.ck-edit-btn:hover{background:rgba(184,146,74,0.08);}
+
+.ugw{border:1px solid rgba(184,146,74,0.18);padding:2.2rem 1.8rem;text-align:center;position:relative;overflow:hidden;}
+.ugw::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(184,146,74,0.05),transparent);}
+.ugw-brand{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;color:var(--white);position:relative;}
+.ugw-brand em{font-style:italic;color:var(--gold);}
+.ugw-tag{font-size:0.6rem;letter-spacing:3.5px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:1.8rem;position:relative;display:block;margin-top:4px;}
+.ugw-apps{display:flex;justify-content:center;gap:0.6rem;flex-wrap:wrap;margin-bottom:1.8rem;position:relative;}
+.ugw-chip{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);color:rgba(255,255,255,0.5);padding:5px 12px;font-size:0.66rem;font-weight:600;letter-spacing:1px;transition:all .3s;border-radius:1px;}
+.ugw-chip:hover{border-color:var(--gold);color:var(--gold);}
+.ugw-idbox{background:rgba(184,146,74,0.07);border:1px solid rgba(184,146,74,0.28);display:inline-flex;align-items:center;gap:12px;padding:10px 22px;margin-bottom:1.8rem;position:relative;}
+.ugw-idlbl{font-size:0.55rem;letter-spacing:2px;text-transform:uppercase;color:rgba(184,146,74,0.55);font-weight:700;}
+.ugw-idval{font-weight:800;font-size:0.95rem;color:var(--gold);letter-spacing:0.5px;}
+.ugw-paybtn{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;max-width:360px;padding:17px 20px;background:linear-gradient(135deg,#00b252,#00e066);color:#fff;border:none;font-family:'Outfit',sans-serif;font-weight:800;font-size:0.88rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-radius:3px;text-decoration:none;box-shadow:0 8px 30px rgba(0,178,82,0.28);transition:all .35s cubic-bezier(0.22,1,0.36,1);position:relative;overflow:hidden;}
+.ugw-paybtn:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(0,178,82,0.42);}
+.ugw-note{font-size:0.73rem;color:rgba(255,255,255,0.25);margin-top:1.3rem;line-height:1.7;position:relative;}
+.ugw-note strong{color:rgba(255,255,255,0.6);}
+.ugw-howto{background:rgba(184,146,74,0.03);border-left:2px solid rgba(184,146,74,0.4);padding:1.1rem 1.3rem;margin-top:1.6rem;text-align:left;position:relative;}
+.ugw-howto-ttl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;font-weight:700;color:rgba(184,146,74,0.6);margin-bottom:0.9rem;}
+.ugw-hrow{display:flex;align-items:flex-start;gap:0.9rem;padding:0.55rem 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.ugw-hrow:last-child{border-bottom:none;}
+.ugw-hnum{width:22px;height:22px;border-radius:50%;border:1px solid rgba(184,146,74,0.35);display:grid;place-items:center;font-size:0.6rem;font-weight:800;color:var(--gold);flex-shrink:0;margin-top:1px;}
+.ugw-htxt{font-size:0.8rem;color:rgba(255,255,255,0.38);line-height:1.6;}
+.ugw-htxt strong{color:rgba(255,255,255,0.7);}
+.ugw-amt-tag{display:inline-block;background:rgba(0,178,82,0.1);border:1px solid rgba(0,178,82,0.25);color:#00e066;padding:3px 10px;font-size:0.68rem;font-weight:700;margin-top:6px;letter-spacing:1px;}
+
+.cko-confirmbtn{width:100%;padding:15px;margin-top:1.1rem;background:var(--white);color:var(--ink);border:none;font-family:'Outfit',sans-serif;font-weight:800;font-size:0.82rem;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+.cko-confirmbtn:hover{background:var(--gold);}
+.cko-navrow{display:flex;gap:1rem;margin-top:2rem;}
+.cko-backbtn{background:transparent;border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.4);padding:12px 22px;font-family:'Outfit',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+.cko-backbtn:hover{border-color:rgba(255,255,255,0.28);color:var(--white);}
+.cko-nextbtn{flex:1;background:var(--gold);color:var(--ink);border:none;padding:13px 22px;font-family:'Outfit',sans-serif;font-weight:800;font-size:0.82rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+.cko-nextbtn:hover{background:var(--gold-l);transform:translateY(-2px);}
+
+@media(max-width:640px){
+  .ck-grid{grid-template-columns:1fr;}
+  .cko-stp-lbl{display:none;}
+  .cko-stp{padding:0.85rem 0.3rem;}
+  .cko-inner{padding:1.8rem 4%;}
+  .ugw{padding:1.6rem 1rem;}
+}
+.pmt-badge{display:inline-flex;align-items:center;gap:6px;background:#d1fae5;color:#065f46;padding:4px 12px;border-radius:20px;font-size:0.72rem;font-weight:700;letter-spacing:1px;margin-bottom:1.5rem;}
+
+/* ── ADMIN LOGIN ── */
+.al-wrap{min-height:calc(100vh - 68px);display:flex;align-items:center;justify-content:center;background:var(--ink);}
+.al-card{background:#111;border:1px solid rgba(184,146,74,0.2);width:100%;max-width:400px;padding:3rem;margin:2rem;}
+.al-card h2{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--white);margin-bottom:0.4rem;}
+.al-card p{color:rgba(255,255,255,0.4);font-size:0.82rem;margin-bottom:2rem;}
+.al-form .fld label{color:rgba(255,255,255,0.5);}
+.al-form .fld input{background:#1a1a1a;border-color:rgba(255,255,255,0.1);color:var(--white);}
+.al-form .fld input:focus{border-color:var(--gold);}
+.al-btn{width:100%;padding:13px;background:var(--gold);color:var(--ink);border:none;font-family:'Outfit',sans-serif;font-weight:700;font-size:0.9rem;letter-spacing:1.5px;cursor:pointer;margin-top:1.5rem;transition:background .25s;}
+.al-btn:hover{background:var(--gold-l);}
+.al-err{color:#e74c3c;font-size:0.82rem;text-align:center;margin-top:0.8rem;display:none;}
+
+/* ─── ADMIN PANEL ─── */
+.ap-hdr{background:var(--ink);padding:1.4rem 5%;display:flex;justify-content:space-between;align-items:center;}
+.ap-hdr h1{font-family:'Cormorant Garamond',serif;color:var(--white);font-size:1.35rem;font-weight:700;}
+.ap-hdr h1 em{color:var(--gold);font-style:normal;}
+.ap-logout{background:none;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.6);padding:6px 16px;font-family:'Outfit',sans-serif;font-size:0.76rem;letter-spacing:1px;cursor:pointer;transition:all .25s;}
+.ap-logout:hover{border-color:var(--danger);color:var(--danger);}
+.ap-tabs{background:var(--white);border-bottom:2px solid var(--border);padding:0 5%;display:flex;overflow-x:auto;}
+.ap-tab{padding:1rem 1.4rem;font-size:0.76rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .25s;color:var(--gray);white-space:nowrap;}
+.ap-tab.active{border-bottom-color:var(--ink);color:var(--ink);}
+.ap-body{padding:2.5rem 5%;background:#f8f5f0;min-height:70vh;}
+.ap-sec{display:none;}
+.ap-sec.active{display:block;}
+.ap-card{background:var(--white);padding:2rem;margin-bottom:1.5rem;}
+.ap-card h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;margin-bottom:1.4rem;padding-bottom:0.8rem;border-bottom:1px solid var(--border);}
+.stats-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:1.2rem;margin-bottom:2rem;}
+.stat-box{background:var(--white);padding:1.4rem;border-left:4px solid var(--gold);}
+.stat-lbl{font-size:0.68rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray);margin-bottom:0.5rem;}
+.stat-val{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;}
+table{width:100%;border-collapse:collapse;}
+thead th{background:var(--ink);color:var(--white);padding:10px 13px;text-align:left;font-size:0.7rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;}
+tbody td{padding:11px 13px;border-bottom:1px solid var(--border);font-size:0.86rem;vertical-align:middle;}
+tr:hover td{background:#faf8f4;}
+.tbtn{padding:5px 11px;font-family:'Outfit',sans-serif;font-size:0.7rem;font-weight:700;cursor:pointer;border:none;letter-spacing:.5px;margin-right:3px;}
+.te{background:var(--ink);color:var(--white);}
+.td{background:var(--danger);color:var(--white);}
+.ord-card{background:var(--white);padding:1.4rem;margin-bottom:1px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;}
+.oc-l h4{font-weight:700;font-size:0.88rem;}
+.oc-l p{font-size:0.8rem;color:var(--gray);margin-top:2px;}
+.oc-l .oc-items{font-size:0.75rem;margin-top:5px;color:var(--gray);}
+.oc-r{display:flex;flex-direction:column;align-items:flex-end;gap:0.4rem;}
+.oc-amt{font-weight:700;color:var(--gold);}
+.oc-date{font-size:0.72rem;color:var(--gray);}
+.oc-pmt{font-size:0.72rem;color:var(--gray);font-style:italic;}
+.o-sel{border:1px solid var(--border);padding:6px 10px;font-family:'Outfit',sans-serif;font-size:0.78rem;outline:none;cursor:pointer;}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:0.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.bp{background:#fef3c7;color:#92400e;}
+.bs{background:#dbeafe;color:#1e40af;}
+.bd{background:#d1fae5;color:#065f46;}
+.pf-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+.pf-full{grid-column:1/-1;}
+.pf-szs{display:flex;gap:0.7rem;flex-wrap:wrap;margin-top:0.4rem;}
+.pf-sc{display:flex;align-items:center;gap:5px;font-size:0.86rem;cursor:pointer;}
+.pf-sc input{cursor:pointer;accent-color:var(--ink);}
+.pf-acts{display:flex;gap:0.8rem;margin-top:1.5rem;}
+.pf-save{padding:10px 22px;background:var(--ink);color:var(--white);border:none;font-family:'Outfit',sans-serif;font-weight:700;font-size:0.8rem;letter-spacing:1px;cursor:pointer;}
+.pf-cancel{padding:10px 22px;background:none;border:1px solid var(--border);color:var(--gray);font-family:'Outfit',sans-serif;font-size:0.8rem;cursor:pointer;}
+.img-drop{border:2px dashed var(--border);padding:2rem;text-align:center;cursor:pointer;transition:border-color .25s;}
+.img-drop:hover{border-color:var(--ink);}
+.img-drop input{display:none;}
+.img-drop p{color:var(--gray);font-size:0.82rem;}
+.img-prev{max-height:100px;max-width:100%;margin-top:1rem;display:none;}
+.pf-inp{width:100%;border:1.5px solid var(--border);padding:10px 13px;font-family:'Outfit',sans-serif;font-size:0.88rem;outline:none;}
+.pf-inp:focus{border-color:var(--ink);}
+.pf-ta{width:100%;border:1.5px solid var(--border);padding:10px 13px;font-family:'Outfit',sans-serif;font-size:0.88rem;outline:none;resize:vertical;min-height:75px;}
+.pf-ta:focus{border-color:var(--ink);}
+.pf-lbl{display:block;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:var(--gray);margin-bottom:0.45rem;}
+
+/* TOAST */
+.toast{position:fixed;bottom:2rem;right:2rem;background:var(--ink);color:var(--white);padding:1rem 1.5rem;font-size:0.86rem;z-index:9999;transform:translateY(100px);opacity:0;transition:all .4s;max-width:280px;border-left:4px solid var(--gold);}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast.ok{border-left-color:var(--success);}
+.toast.err{border-left-color:var(--danger);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding:4rem 6% 3rem;}
+  .hero-frame{display:none;}
+  .features{grid-template-columns:1fr;}
+  .feat{border-right:none;border-bottom:1px solid var(--border);}
+  .det-wrap{grid-template-columns:1fr;gap:2rem;padding:3rem 5%;}
+  .pm-methods{grid-template-columns:1fr;}
+  .step2-grid{grid-template-columns:1fr;}
+  .card-form{grid-template-columns:1fr;}
+  .card-form-full{grid-column:1;}
+  .nb-banks{grid-template-columns:repeat(2,1fr);}
+  .nav-links{display:none;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:rgba(13,13,13,0.98);padding:2rem;gap:1.5rem;}
+  .nav-links.open{display:flex;}
+  .hamburger{display:flex;}
+  .pf-grid{grid-template-columns:1fr;}
+  
+}
+@media(max-width:550px){
+  .prod-grid{grid-template-columns:repeat(2,1fr);}
+  .cart-wrap{padding:2rem 4%;}
+  
+}
+
+/* ═══════════════════════════════════════════
+   ANIMATED PROCESS SECTION — LUXURY EDITORIAL
+═══════════════════════════════════════════ */
+.process-section{
+  background:var(--ink);
+  padding:8rem 0 7rem;
+  position:relative;
+  overflow:hidden;
+}
+.process-bg-text{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(8rem,18vw,20rem);
+  font-weight:700;
+  color:rgba(184,146,74,0.03);
+  letter-spacing:0.3em;
+  white-space:nowrap;
+  pointer-events:none;
+  user-select:none;
+}
+.process-header{
+  text-align:center;
+  padding:0 6%;
+  margin-bottom:6rem;
+}
+.proc-eyebrow{
+  font-size:0.68rem;
+  letter-spacing:6px;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:600;
+  margin-bottom:1.2rem;
+}
+.proc-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.8rem,6vw,5rem);
+  font-weight:700;
+  color:var(--white);
+  line-height:1.05;
+  margin-bottom:1.2rem;
+}
+.proc-title em{
+  font-style:italic;
+  color:var(--gold);
+}
+.proc-sub{
+  color:rgba(255,255,255,0.4);
+  font-size:0.92rem;
+  max-width:480px;
+  margin:0 auto;
+  line-height:1.8;
+}
+
+/* Timeline vertical line */
+.process-timeline{
+  position:relative;
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 5%;
+}
+.timeline-line{
+  position:absolute;
+  left:50%;
+  top:0;bottom:0;
+  width:1px;
+  background:rgba(184,146,74,0.12);
+  transform:translateX(-50%);
+}
+.timeline-fill{
+  width:100%;
+  height:0%;
+  background:linear-gradient(to bottom,var(--gold),rgba(184,146,74,0.3));
+  transition:height 0.08s linear;
+}
+
+/* Each step row */
+.proc-step{
+  display:grid;
+  grid-template-columns:1fr 80px 1fr;
+  gap:0 2rem;
+  align-items:center;
+  margin-bottom:5.5rem;
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity 0.7s ease,transform 0.7s ease;
+}
+.proc-step.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+.proc-step.reverse .proc-content{order:3;}
+.proc-step.reverse .proc-visual{order:1;}
+.proc-step.reverse .proc-node{order:2;}
+
+/* Centre node */
+.proc-node{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  position:relative;
+  z-index:2;
+}
+.proc-ring{
+  position:absolute;
+  width:80px;height:80px;
+  border-radius:50%;
+  border:1px solid rgba(184,146,74,0.2);
+  animation:ringPulse 3s ease-in-out infinite;
+}
+@keyframes ringPulse{
+  0%,100%{transform:scale(1);opacity:0.4;}
+  50%{transform:scale(1.25);opacity:0;}
+}
+.proc-orb{
+  width:56px;height:56px;
+  border-radius:50%;
+  background:var(--ink);
+  border:1.5px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+  z-index:1;
+  box-shadow:0 0 30px rgba(184,146,74,0.15);
+  transition:all 0.4s;
+}
+.proc-step.visible .proc-orb{
+  box-shadow:0 0 40px rgba(184,146,74,0.3);
+}
+.proc-icon{
+  color:var(--gold);
+  font-size:1.1rem;
+  font-weight:700;
+}
+.proc-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:0.65rem;
+  font-weight:700;
+  letter-spacing:3px;
+  color:rgba(184,146,74,0.4);
+  margin-top:4px;
+}
+
+/* Text content */
+.proc-content{
+  padding:0 1.5rem;
+}
+.proc-tag{
+  font-size:0.62rem;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:700;
+  margin-bottom:0.7rem;
+}
+.proc-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.7rem;
+  font-weight:700;
+  color:var(--white);
+  line-height:1.1;
+  margin-bottom:0.9rem;
+}
+.proc-desc{
+  color:rgba(255,255,255,0.45);
+  font-size:0.85rem;
+  line-height:1.85;
+  margin-bottom:1rem;
+}
+.proc-detail-row{
+  display:flex;
+  gap:0.5rem;
+  flex-wrap:wrap;
+}
+.proc-chip{
+  background:rgba(184,146,74,0.08);
+  border:1px solid rgba(184,146,74,0.2);
+  color:var(--gold);
+  font-size:0.62rem;
+  font-weight:700;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  padding:4px 10px;
+}
+
+/* Visual box */
+.proc-visual{
+  aspect-ratio:1;
+  max-width:180px;
+  border:1px solid rgba(184,146,74,0.15);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  transition:border-color 0.4s,box-shadow 0.4s;
+}
+.proc-step.visible .proc-visual{
+  border-color:rgba(184,146,74,0.35);
+  box-shadow:0 0 40px rgba(184,146,74,0.08);
+}
+.proc-visual::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at center,rgba(184,146,74,0.06),transparent 70%);
+}
+.pv-inner{
+  text-align:center;
+  position:relative;
+  z-index:1;
+}
+.pv-icon-large{
+  font-size:2.8rem;
+  margin-bottom:0.5rem;
+  display:block;
+  filter:grayscale(0.2);
+}
+.pv-label{
+  font-size:0.6rem;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:rgba(184,146,74,0.5);
+  font-weight:600;
+}
+
+/* Different accent colours per step visual */
+.pv1{background:rgba(255,255,255,0.02);}
+.pv2{background:rgba(184,146,74,0.04);}
+.pv3{background:rgba(255,255,255,0.02);}
+.pv4{background:rgba(184,146,74,0.04);}
+.pv5{background:rgba(255,255,255,0.02);}
+.pv6{background:rgba(184,146,74,0.06);}
+
+/* Stagger delays */
+.proc-step[data-step="1"]{transition-delay:0.0s;}
+.proc-step[data-step="2"]{transition-delay:0.1s;}
+.proc-step[data-step="3"]{transition-delay:0.15s;}
+.proc-step[data-step="4"]{transition-delay:0.15s;}
+.proc-step[data-step="5"]{transition-delay:0.15s;}
+.proc-step[data-step="6"]{transition-delay:0.15s;}
+
+/* CTA */
+.proc-cta{
+  text-align:center;
+  margin-top:3rem;
+}
+
+/* Responsive */
+@media(max-width:860px){
+  .timeline-line{display:none;}
+  .proc-step,.proc-step.reverse{
+    grid-template-columns:64px 1fr;
+    grid-template-rows:auto;
+    margin-bottom:3.5rem;
+  }
+  .proc-step .proc-node,.proc-step.reverse .proc-node{order:1!important;}
+  .proc-step .proc-content,.proc-step.reverse .proc-content{order:2!important;padding:0 0 0 1rem;}
+  .proc-visual,.proc-step.reverse .proc-visual{display:none;}
+  .proc-orb{width:44px;height:44px;}
+  .proc-ring{width:64px;height:64px;}
+  .proc-num{font-size:0.55rem;}
+  .proc-name{font-size:1.3rem;}
+  .process-section{padding:5rem 0 4rem;}
+  .process-header{margin-bottom:3.5rem;}
+}
+
+/* ── Processing Panel ── */
+.cko-proc-wrap{text-align:center;padding:4rem 2rem;}
+.cko-spinner{
+  width:64px;height:64px;border-radius:50%;
+  border:2px solid rgba(184,146,74,0.15);
+  border-top-color:var(--gold);
+  animation:ckoSpin 0.9s linear infinite;
+  margin:0 auto 2rem;
+}
+@keyframes ckoSpin{to{transform:rotate(360deg);}}
+.cko-proc-title{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;color:var(--white);margin-bottom:0.5rem;}
+.cko-proc-sub{font-size:0.82rem;color:rgba(255,255,255,0.3);margin-bottom:2.5rem;}
+.psi-label{font-size:0.75rem;color:var(--gold);letter-spacing:2px;text-transform:uppercase;font-weight:600;height:22px;transition:all .4s;margin-bottom:2rem;}
+.psi-list{max-width:340px;margin:0 auto;text-align:left;}
+.psi-item{
+  display:flex;align-items:center;gap:1rem;
+  padding:0.7rem 1rem;margin-bottom:0.5rem;
+  border:1px solid rgba(255,255,255,0.05);
+  transition:all .4s;
+  opacity:0.3;
+}
+.psi-item.psi-active{
+  opacity:1;background:rgba(184,146,74,0.06);
+  border-color:rgba(184,146,74,0.25);
+}
+.psi-item.psi-done{
+  opacity:1;background:rgba(26,158,92,0.06);
+  border-color:rgba(26,158,92,0.2);
+}
+.psi-dot{
+  width:28px;height:28px;border-radius:50%;
+  border:1.5px solid rgba(255,255,255,0.1);
+  display:grid;place-items:center;font-size:0.7rem;
+  font-weight:700;color:rgba(255,255,255,0.25);
+  flex-shrink:0;transition:all .4s;
+}
+.psi-item.psi-active .psi-dot{
+  border-color:var(--gold);color:var(--gold);
+  box-shadow:0 0 12px rgba(184,146,74,0.3);
+  animation:ckoSpin 1.2s linear infinite;
+}
+.psi-item.psi-done .psi-dot{
+  background:var(--success);border-color:var(--success);color:#fff;animation:none;
+}
+.psi-item.psi-done .psi-dot::after{content:'✓';}
+.psi-text{font-size:0.82rem;color:rgba(255,255,255,0.45);transition:color .4s;}
+.psi-item.psi-active .psi-text{color:var(--white);}
+.psi-item.psi-done .psi-text{color:rgba(26,158,92,0.9);}
+
+/* ── Inline Success Panel ── */
+.cko-success-wrap{text-align:center;padding:3.5rem 2rem;}
+.cko-success-icon{
+  width:80px;height:80px;border-radius:50%;
+  background:rgba(26,158,92,0.1);border:2px solid var(--success);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2rem;margin:0 auto 1.5rem;color:var(--success);
+  animation:successPop .6s cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes successPop{
+  from{transform:scale(0.5);opacity:0;}
+  to{transform:scale(1);opacity:1;}
+}
+.cko-success-title{font-family:'Cormorant Garamond',serif;font-size:2.3rem;font-weight:700;color:var(--white);margin-bottom:0.4rem;}
+.cko-success-title em{font-style:italic;color:var(--gold);}
+.cko-success-sub{font-size:0.85rem;color:rgba(255,255,255,0.3);margin-bottom:2rem;}
+.cko-success-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:1.8rem;max-width:440px;margin:0 auto 2rem;text-align:left;}
+.cko-sc-row{display:flex;justify-content:space-between;align-items:center;padding:0.6rem 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:0.83rem;}
+.cko-sc-row:last-child{border-bottom:none;}
+.cko-sc-lbl{color:rgba(255,255,255,0.35);font-size:0.7rem;letter-spacing:1.5px;text-transform:uppercase;}
+.cko-sc-val{color:var(--white);font-weight:700;}
+.cko-sc-val.gold{color:var(--gold);}
+.cko-sc-val.green{color:#00e066;}
+.cko-success-oid{
+  display:inline-block;background:rgba(184,146,74,0.1);
+  border:1px solid rgba(184,146,74,0.3);
+  color:var(--gold);padding:8px 20px;
+  font-size:0.8rem;font-weight:800;letter-spacing:3px;
+  text-transform:uppercase;margin-bottom:2rem;
+}
+
+/* ── UPI Reference Panel ── */
+.ref-source{text-align:center;padding:1rem;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);}
+.ref-src-icon{font-size:1.6rem;margin-bottom:0.4rem;}
+.ref-src-name{font-weight:700;font-size:0.82rem;color:var(--white);margin-bottom:0.4rem;}
+.ref-src-hint{font-size:0.7rem;color:rgba(255,255,255,0.3);line-height:1.5;}
+.upi-ref-card{border-color:rgba(184,146,74,0.15)!important;}
+.ref-input-wrap{position:relative;}
+.ref-status{font-size:0.75rem;font-weight:700;letter-spacing:1px;height:20px;margin-bottom:0.5rem;transition:all .3s;}
+.ref-status.ok{color:#00e066;}
+.ref-status.err{color:#ff6b6b;}
+.ref-hint{font-size:0.72rem;color:rgba(255,255,255,0.22);line-height:1.6;margin-top:0.4rem;}
+@media(max-width:600px){
+  .cko-card div[style*="grid-template-columns:1fr 1fr 1fr"]{grid-template-columns:1fr!important;}
+}
+
+/* ═══════════════════════════
+   SPLASH / INTRO ANIMATION
+═══════════════════════════ */
+#splash{
+  position:fixed;inset:0;
+  z-index:99999;
+  background:#0d0d0d;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;
+  transition:opacity 0.8s ease, visibility 0.8s ease;
+}
+#splash.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+.sp-letters{
+  display:flex;
+  align-items:flex-end;
+  gap:0;
+  position:relative;
+}
+.sp-r1,.sp-r2,.sp-y{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(6rem,18vw,14rem);
+  font-weight:700;
+  line-height:1;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(184,146,74,0.6);
+  opacity:0;
+  transform:translateY(40px);
+  letter-spacing:-0.02em;
+}
+.sp-r1{
+  animation:spLetterIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.2s forwards;
+}
+.sp-r2{
+  animation:spLetterIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.45s forwards;
+}
+.sp-y{
+  animation:spLetterIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.7s forwards;
+}
+@keyframes spLetterIn{
+  0%{opacity:0;transform:translateY(40px);-webkit-text-stroke:1px rgba(184,146,74,0);}
+  60%{opacity:1;transform:translateY(-8px);-webkit-text-stroke:1px rgba(184,146,74,0.8);}
+  100%{opacity:1;transform:translateY(0);-webkit-text-stroke:1px rgba(184,146,74,0.5);}
+}
+/* Gold fill sweeps in after letters appear */
+.sp-r1.filled,.sp-r2.filled,.sp-y.filled{
+  color:var(--gold);
+  -webkit-text-stroke:1px var(--gold);
+  text-shadow:0 0 60px rgba(184,146,74,0.25);
+  transition:color 0.6s ease, -webkit-text-stroke 0.6s ease, text-shadow 0.6s ease;
+}
+.sp-line{
+  width:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  margin-top:1.5rem;
+  animation:spLineIn 0.6s ease 1.4s forwards;
+}
+@keyframes spLineIn{
+  to{width:clamp(200px,30vw,380px);}
+}
+.sp-sub{
+  font-size:0.62rem;
+  letter-spacing:8px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0);
+  font-weight:600;
+  margin-top:1.2rem;
+  animation:spSubIn 0.7s ease 1.7s forwards;
+}
+@keyframes spSubIn{
+  to{color:rgba(255,255,255,0.3);}
+}
+/* Page body hidden until splash done */
+body.splashing > nav,
+body.splashing > .page,
+body.splashing > #toast{
+  opacity:0;
+}
+body.splash-done > nav,
+body.splash-done > .page,
+body.splash-done > #toast{
+  opacity:1;
+  transition:opacity 0.6s ease;
+}
+
+/* ── Big Hero Shop Button ── */
+.hero-shop-btn{
+  display:inline-flex;align-items:center;gap:16px;
+  background:transparent;
+  border:2px solid var(--gold);
+  color:var(--gold);
+  padding:18px 48px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem;
+  font-weight:700;
+  letter-spacing:6px;
+  text-transform:uppercase;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+  transition:color 0.4s ease;
+}
+.hero-shop-btn::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:var(--gold);
+  transform:translateX(-100%);
+  transition:transform 0.4s cubic-bezier(0.22,1,0.36,1);
+  z-index:0;
+}
+.hero-shop-btn:hover::before{
+  transform:translateX(0);
+}
+.hero-shop-btn:hover{
+  color:var(--ink);
+}
+.hsb-text,.hsb-icon{
+  position:relative;z-index:1;
+}
+.hsb-icon{
+  font-size:1.2rem;
+  transition:transform 0.3s ease;
+}
+.hero-shop-btn:hover .hsb-icon{
+  transform:translateX(6px);
+}
+</style>
+</head>
+<body class="splashing">
+
+
+<!-- SPLASH INTRO -->
+<div id="splash">
+  <div class="sp-letters">
+    <span class="sp-r1">R</span>
+    <span class="sp-r2">R</span>
+    <span class="sp-y">Y</span>
+  </div>
+  <div class="sp-line"></div>
+  <div class="sp-sub">Fashion</div>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo" onclick="showPage('home')">RRY <em>Fashion</em></div>
+  <div class="nav-links" id="navLinks">
+    <a id="navHome" onclick="showPage('home')">Home</a>
+    <a id="navShop" onclick="showPage('shop')">Shop</a>
+    <a id="navCart" onclick="showPage('cart')">Cart</a>
+    <a id="adminLink" onclick="showPage('admin-login')" style="display:none">Admin</a>
+    <a id="logoutLink" onclick="doLogout()" style="display:none">Logout</a>
+  </div>
+  <div class="nav-right">
+    <button class="cart-pill" onclick="showPage('cart')">🛍 Cart <span class="cart-badge" id="cartBadge">0</span></button>
+    <button class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div id="home" class="page active">
+  <div class="hero">
+    <div>
+      <div class="h-label">✦ New Collection 2025</div>
+      <h1>Wear Your<br><em>Story</em>,<br>Define Your Era.</h1>
+      <p class="hero-sub">RRY Fashion curates premium clothing that speaks before you do — timeless elegance for the modern soul.</p>
+      <div class="hero-btns">
+        <button class="hero-shop-btn" onclick="showPage('shop')">
+          <span class="hsb-text">Shop</span>
+          <span class="hsb-icon">→</span>
+        </button>
+      </div>
+    </div>
+    <div class="hero-frame"></div>
+  </div>
+  <div class="features">
+    <div class="feat"><div class="feat-icon">✦</div><h3>Premium Fabrics</h3><p>Every stitch crafted from hand-selected materials for lasting elegance.</p></div>
+    <div class="feat"><div class="feat-icon">◈</div><h3>Exclusive Designs</h3><p>Curated styles merging tradition with contemporary silhouettes.</p></div>
+    <div class="feat"><div class="feat-icon">🔒</div><h3>Secure UPI Payments</h3><p>Pay with GPay, PhonePe, Paytm or BHIM — instant & encrypted.</p></div>
+  </div>
+</div>
+
+<!-- SHOP -->
+<div id="shop" class="page">
+  <div class="shop-head">
+    <h1>The Collection</h1>
+    <p>Handpicked premium pieces for every occasion.</p>
+  </div>
+  <div class="filters-bar">
+    <span class="f-lbl">Filter:</span>
+    <select class="f-sel" id="priceFilter" onchange="applyFilters()">
+      <option value="">All Prices</option>
+      <option value="0-500">Under ₹500</option>
+      <option value="500-1000">₹500 – ₹1000</option>
+      <option value="1000-2000">₹1000 – ₹2000</option>
+      <option value="2000+">₹2000+</option>
+    </select>
+    <select class="f-sel" id="sizeFilter" onchange="applyFilters()">
+      <option value="">All Sizes</option>
+      <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+    </select>
+    <button class="f-clear" onclick="resetFilters()">Clear</button>
+  </div>
+  <div class="prod-grid" id="prodGrid"></div>
+</div>
+
+<!-- DETAIL -->
+<div id="product-detail" class="page">
+  <a class="back-btn" onclick="showPage('shop')">← Back to Shop</a>
+  <div class="det-wrap" id="detContent"></div>
+</div>
+
+<!-- CART -->
+<div id="cart" class="page">
+  <div class="cart-wrap">
+    <h1>Shopping Cart</h1>
+    <div id="cartItems"></div>
+    <div id="cartSummary"></div>
+  </div>
+</div>
+
+<!-- CHECKOUT -->
+<div id="checkout" class="page cko-page">
+
+  <!-- ── Sticky Progress Bar ── -->
+  <div class="cko-progress">
+    <div class="cko-steps">
+      <div class="cko-stp active" id="cstp1">
+        <div class="cko-stp-dot" id="cdot1">1</div>
+        <div class="cko-stp-lbl">Review</div>
+      </div>
+      <div class="cko-stp" id="cstp2">
+        <div class="cko-stp-dot" id="cdot2">2</div>
+        <div class="cko-stp-lbl">Delivery</div>
+      </div>
+      <div class="cko-stp" id="cstp3">
+        <div class="cko-stp-dot" id="cdot3">3</div>
+        <div class="cko-stp-lbl">Payment</div>
+      </div>
+      <div class="cko-stp" id="cstp4">
+        <div class="cko-stp-dot" id="cdot4">4</div>
+        <div class="cko-stp-lbl">UPI Ref</div>
+      </div>
+      <div class="cko-stp" id="cstp5">
+        <div class="cko-stp-dot" id="cdot5">✓</div>
+        <div class="cko-stp-lbl">Confirmed</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ STEP 1 — Cart Review ════ -->
+  <div id="cpanel1" class="cko-panel active">
+    <div class="cko-inner">
+      <div class="cko-phdr">
+        <div class="cko-badge">✦ Step 1 of 3</div>
+        <h1 class="cko-ptitle">Review Your <em>Order</em></h1>
+        <p class="cko-psub">Confirm your selections before proceeding to delivery.</p>
+      </div>
+      <div class="cko-card">
+        <div class="cko-ctitle">🛍 Your Items</div>
+        <div id="ckItems"></div>
+        <div class="ck-sum" id="ckSum"></div>
+      </div>
+      <div class="cko-navrow">
+        <button class="cko-nextbtn" onclick="ckoGo(2)">Continue to Delivery →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ STEP 2 — Delivery ════ -->
+  <div id="cpanel2" class="cko-panel">
+    <div class="cko-inner">
+      <div class="cko-phdr">
+        <div class="cko-badge">◈ Step 2 of 3</div>
+        <h1 class="cko-ptitle"><em>Delivery</em> Details</h1>
+        <p class="cko-psub">Where shall we send your order? Your details are held with complete discretion.</p>
+      </div>
+      <div class="cko-card">
+        <div class="cko-ctitle">📦 Shipping Information</div>
+        <div class="ck-grid">
+          <div class="ck-fld ck-full"><label>Full Name *</label><input type="text" id="ckName" placeholder="Your full name"></div>
+          <div class="ck-fld"><label>Email</label><input type="email" id="ckEmail" placeholder="email@example.com"></div>
+          <div class="ck-fld"><label>Phone *</label><input type="tel" id="ckPhone" placeholder="10-digit mobile"></div>
+          <div class="ck-fld ck-full"><label>Address *</label><textarea id="ckAddr" placeholder="House no., Street, Area, Landmark"></textarea></div>
+          <div class="ck-fld"><label>City</label><input type="text" id="ckCity" placeholder="City"></div>
+          <div class="ck-fld"><label>PIN Code</label><input type="text" id="ckPin" placeholder="6-digit PIN"></div>
+        </div>
+      </div>
+      <div class="cko-navrow">
+        <button class="cko-backbtn" onclick="ckoGo(1)">← Back</button>
+        <button class="cko-nextbtn" onclick="ckoValidateDelivery()">Continue to Payment →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ STEP 3 — UPI Payment ════ -->
+  <div id="cpanel3" class="cko-panel">
+    <div class="cko-inner">
+      <div class="cko-phdr">
+        <div class="cko-badge">₹ Step 3 of 3</div>
+        <h1 class="cko-ptitle">Pay via <em>UPI</em></h1>
+        <p class="cko-psub">One tap — your UPI app opens with amount &amp; merchant pre-filled.</p>
+      </div>
+
+      <!-- Delivery summary pill -->
+      <div class="ck-delpill" id="ckDelPill">
+        <div class="ck-del-icon">📍</div>
+        <div>
+          <div class="ck-del-name" id="ckDelName">—</div>
+          <div class="ck-del-addr" id="ckDelAddr">—</div>
+        </div>
+        <button class="ck-edit-btn" onclick="ckoGo(2)">Edit</button>
+      </div>
+
+      <!-- UPI Gateway -->
+      <div class="ugw">
+        <div class="ugw-brand"><em>RRY</em> Fashion</div>
+        <span class="ugw-tag">Secure UPI Payment Gateway</span>
+        <div class="ugw-apps">
+          <span class="ugw-chip">📱 Google Pay</span>
+          <span class="ugw-chip">📱 PhonePe</span>
+          <span class="ugw-chip">📱 Paytm</span>
+          <span class="ugw-chip">📱 BHIM</span>
+          <span class="ugw-chip">📱 Amazon Pay</span>
+        </div>
+        <div class="ugw-idbox">
+          <div>
+            <div class="ugw-idlbl">Pay to UPI ID</div>
+            <div class="ugw-idval">9247850060@paytm</div>
+          </div>
+        </div>
+        <div style="margin-bottom:1.4rem;position:relative;">
+          <div style="font-size:0.6rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:4px;">Amount Due</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--gold);">₹<span id="ckAmtDisplay">0</span></div>
+        </div>
+        <a id="ckUpiBtn" href="#" class="ugw-paybtn" onclick="ckoOpenUPI(event)">
+          <span style="font-size:1.3rem;">💸</span> Open UPI App &amp; Pay Now
+        </a>
+        <div class="ugw-note">
+          Tapping above launches your UPI app directly with the amount &amp; merchant <strong>RRY Fashion</strong> pre-filled.<br>
+          Complete payment there, then return and tap <strong>"Confirm My Order"</strong> below.
+        </div>
+        <div class="ugw-howto">
+          <div class="ugw-howto-ttl">How to complete payment</div>
+          <div class="ugw-hrow"><div class="ugw-hnum">1</div><div class="ugw-htxt">Tap <strong>"Open UPI App & Pay Now"</strong> — your phone opens GPay / PhonePe / Paytm automatically</div></div>
+          <div class="ugw-hrow"><div class="ugw-hnum">2</div><div class="ugw-htxt">Your UPI app shows the amount and merchant — verify it reads <strong>RRY Fashion · 9247850060@paytm</strong></div></div>
+          <div class="ugw-hrow"><div class="ugw-hnum">3</div><div class="ugw-htxt">Enter your <strong>UPI PIN</strong> to authorise the payment — it reaches us instantly</div></div>
+          <div class="ugw-hrow"><div class="ugw-hnum">4</div><div class="ugw-htxt">Return here and tap <strong>"I've Paid"</strong> — you'll be asked to enter your UPI Reference Number to verify your payment</div></div>
+        </div>
+      </div>
+
+      <button class="cko-confirmbtn" onclick="ckoGoRef()">✓ I've Paid — Enter UPI Reference →</button>
+
+      <div class="cko-navrow" style="margin-top:1rem;">
+        <button class="cko-backbtn" onclick="ckoGo(2)">← Back to Delivery</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ STEP 4 — UPI Reference Number ════ -->
+  <div id="cpanel4" class="cko-panel">
+    <div class="cko-inner">
+      <div class="cko-phdr">
+        <div class="cko-badge">🔖 Step 4 of 4</div>
+        <h1 class="cko-ptitle">Enter UPI <em>Reference</em></h1>
+        <p class="cko-psub">Please enter the 12-digit UPI Transaction Reference number from your payment app to verify your payment.</p>
+      </div>
+
+      <!-- What is a UPI Ref box -->
+      <div class="cko-card" style="border-color:rgba(184,146,74,0.2);">
+        <div class="cko-ctitle">🔍 Where to find your UPI Ref No.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:0.5rem;">
+          <div class="ref-source">
+            <div class="ref-src-icon">📱</div>
+            <div class="ref-src-name">Google Pay</div>
+            <div class="ref-src-hint">Tap the transaction → see "Transaction ID"</div>
+          </div>
+          <div class="ref-source">
+            <div class="ref-src-icon">💜</div>
+            <div class="ref-src-name">PhonePe</div>
+            <div class="ref-src-hint">History → tap payment → "UPI Ref No."</div>
+          </div>
+          <div class="ref-source">
+            <div class="ref-src-icon">🔵</div>
+            <div class="ref-src-name">Paytm</div>
+            <div class="ref-src-hint">Passbook → tap transaction → "UPI Ref"</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input box -->
+      <div class="cko-card upi-ref-card">
+        <div class="cko-ctitle">📋 UPI Transaction Reference</div>
+        <div class="ref-input-wrap">
+          <div class="ck-fld" style="margin-bottom:0.5rem;">
+            <label>UPI Reference / Transaction ID *</label>
+            <input type="text" id="ckUpiRef" 
+              placeholder="e.g. 425812693041" 
+              maxlength="22"
+              oninput="ckoFormatRef(this)"
+              autocomplete="off"
+              style="font-size:1.1rem;font-weight:700;letter-spacing:2px;text-align:center;padding:14px 16px;">
+          </div>
+          <div id="refStatus" class="ref-status"></div>
+          <div class="ref-hint">
+            Typically 12 digits — found in your UPI app under payment history or transaction details.
+          </div>
+        </div>
+
+        <!-- Payment summary recap -->
+        <div style="margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,0.06);">
+          <div style="font-size:0.58rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:0.8rem;">Payment Summary</div>
+          <div class="ck-srow"><span>Paid to</span><span style="color:var(--gold);font-weight:700;">9247850060@paytm</span></div>
+          <div class="ck-srow"><span>Merchant</span><span style="color:rgba(255,255,255,0.7);">RRY Fashion</span></div>
+          <div class="ck-srow grand"><span>Amount</span><span>₹<span id="refAmtDisplay">0</span></span></div>
+        </div>
+      </div>
+
+      <div class="cko-navrow">
+        <button class="cko-backbtn" onclick="ckoGo(3)">← Back</button>
+        <button class="cko-nextbtn" onclick="ckoConfirm()">Confirm Order →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESSING PANEL -->
+  <div id="cpanelProc" class="cko-panel">
+    <div class="cko-inner">
+      <div class="cko-proc-wrap">
+        <div class="cko-spinner"></div>
+        <h2 class="cko-proc-title">Processing Your <em style="font-style:italic;color:var(--gold)">Order</em></h2>
+        <p class="cko-proc-sub">Please wait while we verify your payment and prepare your order.</p>
+        <div class="psi-label" id="psiLabel">Initialising…</div>
+        <div class="psi-list">
+          <div class="psi-item" id="psi1"><div class="psi-dot">1</div><div class="psi-text">Validating order details</div></div>
+          <div class="psi-item" id="psi2"><div class="psi-dot">2</div><div class="psi-text">Securing your transaction</div></div>
+          <div class="psi-item" id="psi3"><div class="psi-dot">3</div><div class="psi-text">Confirming payment with merchant</div></div>
+          <div class="psi-item" id="psi4"><div class="psi-dot">4</div><div class="psi-text">Generating order confirmation</div></div>
+          <div class="psi-item" id="psi5"><div class="psi-dot">5</div><div class="psi-text">Preparing your receipt</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUCCESS PANEL -->
+  <div id="cpanelSuccess" class="cko-panel">
+    <div class="cko-inner">
+      <div class="cko-success-wrap">
+        <div class="cko-success-icon">✓</div>
+        <h2 class="cko-success-title"><em>Order</em> Confirmed!</h2>
+        <p class="cko-success-sub">Thank you for shopping with RRY Fashion. Your order is on its way.</p>
+        <div class="cko-success-oid" id="cpSuccessOid">ORDER #000000</div>
+        <div class="cko-success-card">
+          <div class="cko-sc-row"><span class="cko-sc-lbl">Customer</span><span class="cko-sc-val" id="cpSuccessName">—</span></div>
+          <div class="cko-sc-row"><span class="cko-sc-lbl">Amount Paid</span><span class="cko-sc-val gold" id="cpSuccessAmt">—</span></div>
+          <div class="cko-sc-row"><span class="cko-sc-lbl">Payment</span><span class="cko-sc-val">UPI · 9247850060@paytm</span></div>
+          <div class="cko-sc-row"><span class="cko-sc-lbl">UPI Ref No.</span><span class="cko-sc-val green" id="cpSuccessRef">—</span></div>
+          <div class="cko-sc-row"><span class="cko-sc-lbl">Order Date</span><span class="cko-sc-val" id="cpSuccessDate">—</span></div>
+          <div class="cko-sc-row"><span class="cko-sc-lbl">Delivery</span><span class="cko-sc-val green">3–7 Business Days</span></div>
+          <div class="cko-sc-row"><span class="cko-sc-lbl">Status</span><span class="cko-sc-val green">✓ Confirmed</span></div>
+        </div>
+        <button class="cko-nextbtn" style="max-width:300px;display:inline-block;" onclick="showPage('shop')">Continue Shopping →</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- STANDALONE SUCCESS -->
+<div id="success" class="page">
+  <div class="success-wrap">
+    <div class="success-card fade">
+      <div class="success-check">✓</div>
+      <h1>Order Confirmed!</h1>
+      <p>Thank you for shopping with <strong>RRY Fashion</strong>.</p>
+      <div class="success-oid" id="successOid">ORDER #000000</div>
+      <button class="btn-gold" onclick="showPage('shop')" style="width:100%">Continue Shopping</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN LOGIN -->
+<div id="admin-login" class="page">
+  <div class="al-wrap">
+    <div class="al-card fade">
+      <h2>Admin Panel</h2>
+      <p>RRY Fashion · Authorized Personnel Only</p>
+      <div class="al-form">
+        <div class="fld"><label>Username</label><input type="text" id="alUser" placeholder="admin"></div>
+        <div class="fld"><label>Password</label><input type="password" id="alPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
+        <button class="al-btn" onclick="doLogin()">Sign In →</button>
+        <div class="al-err" id="alErr">Invalid credentials. Access denied.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel" class="page">
+  <div class="ap-hdr">
+    <h1>RRY <em>Fashion</em> · Admin</h1>
+    <button class="ap-logout" onclick="doLogout()">Sign Out</button>
+  </div>
+  <div class="ap-tabs">
+    <div class="ap-tab active" onclick="switchTab('ap-dash',this)">Dashboard</div>
+    <div class="ap-tab" onclick="switchTab('ap-prods',this)">Products</div>
+    <div class="ap-tab" onclick="switchTab('ap-orders',this)">Orders</div>
+    <div class="ap-tab" onclick="switchTab('ap-add',this)">Add Product</div>
+  </div>
+  <div class="ap-body">
+    <div id="ap-dash" class="ap-sec active">
+      <div class="stats-row" id="statsRow"></div>
+      <div class="ap-card"><h3>Recent Orders</h3><div id="recentOrds"></div></div>
+    </div>
+    <div id="ap-prods" class="ap-sec">
+      <div class="ap-card"><h3>All Products</h3><div style="overflow-x:auto"><table><thead><tr><th>Name</th><th>Price</th><th>Sizes</th><th>Stock</th><th>Actions</th></tr></thead><tbody id="prodTbody"></tbody></table></div></div>
+    </div>
+    <div id="ap-orders" class="ap-sec">
+      <div class="ap-card"><h3>All Orders</h3><div id="ordsList"></div></div>
+    </div>
+    <div id="ap-add" class="ap-sec">
+      <div class="ap-card">
+        <h3 id="pFormTitle">Add New Product</h3>
+        <div class="pf-grid">
+          <div class="pf-full"><div class="img-drop" onclick="document.getElementById('imgInp').click()"><input type="file" id="imgInp" accept="image/*" onchange="prevImg(this)"><p>📷 Click to upload dress image</p><img class="img-prev" id="imgPv"></div></div>
+          <div><label class="pf-lbl">Product Name *</label><input class="pf-inp" type="text" id="pN" placeholder="e.g. Silk Kurta Set"></div>
+          <div><label class="pf-lbl">Price (₹) *</label><input class="pf-inp" type="number" id="pP" placeholder="e.g. 1499"></div>
+          <div class="pf-full"><label class="pf-lbl">Description</label><textarea class="pf-ta" id="pD" placeholder="Product description..."></textarea></div>
+          <div>
+            <label class="pf-lbl">Sizes *</label>
+            <div class="pf-szs">
+              <label class="pf-sc"><input type="checkbox" class="pSz" value="S"> S</label>
+              <label class="pf-sc"><input type="checkbox" class="pSz" value="M"> M</label>
+              <label class="pf-sc"><input type="checkbox" class="pSz" value="L"> L</label>
+              <label class="pf-sc"><input type="checkbox" class="pSz" value="XL"> XL</label>
+              <label class="pf-sc"><input type="checkbox" class="pSz" value="XXL"> XXL</label>
+            </div>
+          </div>
+          <div><label class="pf-lbl">Stock *</label><input class="pf-inp" type="number" id="pSt" placeholder="e.g. 50"></div>
+          <div class="pf-full"><label class="pf-lbl">Category</label><input class="pf-inp" type="text" id="pCt" placeholder="e.g. Ethnic, Western, Casual"></div>
+          <input type="hidden" id="pEid">
+        </div>
+        <div class="pf-acts">
+          <button class="pf-save" onclick="saveProd()">Save Product</button>
+          <button class="pf-cancel" onclick="cancelEdit()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══ DATA ═══
+const DEFAULT_PRODUCTS=[
+  {id:1,name:'Embroidered Anarkali',price:1899,desc:'Elegant anarkali adorned with intricate floral embroidery. A festive masterpiece.',sizes:['S','M','L','XL'],stock:30,category:'Ethnic',img:null},
+  {id:2,name:'Banarasi Silk Kurta Set',price:2299,desc:'Rich Banarasi silk with gold zari weave. Perfect for weddings.',sizes:['M','L','XL','XXL'],stock:18,category:'Ethnic',img:null},
+  {id:3,name:'Floral Wrap Midi Dress',price:849,desc:'Breezy floral wrap dress in lightweight fabric. Ideal for brunches.',sizes:['S','M','L'],stock:35,category:'Western',img:null},
+  {id:4,name:'Linen Co-ord Set',price:1499,desc:'Effortlessly chic linen co-ord with relaxed silhouette.',sizes:['S','M','L','XL'],stock:22,category:'Western',img:null},
+  {id:5,name:'Saree Gown Fusion',price:2799,desc:'Contemporary fusion gown blending traditional drape with modern structure.',sizes:['S','M','L','XL','XXL'],stock:10,category:'Ethnic',img:null},
+  {id:6,name:'Printed Cotton Kurti',price:549,desc:'Everyday comfort in breathable cotton with vibrant block-print.',sizes:['S','M','L','XL','XXL'],stock:65,category:'Casual',img:null},
+  {id:7,name:'Designer Palazzo Set',price:1199,desc:'Flowing palazzo paired with matching kurti. Comfort meets elegance.',sizes:['M','L','XL'],stock:28,category:'Casual',img:null},
+  {id:8,name:'Chanderi Suit',price:1699,desc:'Lightweight Chanderi fabric with delicate motifs. A wardrobe staple.',sizes:['S','M','L'],stock:15,category:'Ethnic',img:null},
+];
+let products=[...DEFAULT_PRODUCTS];
+let cart=[],orders=[],nextId=9,isAdmin=false;
+
+// ═══ SHARED STORAGE SYNC ═══
+const STORE_KEY='rry:products';
+const STORE_NEXTID='rry:nextId';
+const STORE_ORDERS='rry:orders';
+
+async function loadSharedData(){
+  try{
+    const pr=await window.storage.get(STORE_KEY,true);
+    if(pr&&pr.value){
+      const parsed=JSON.parse(pr.value);
+      if(Array.isArray(parsed)&&parsed.length) products=parsed;
+    }
+  }catch(e){/* first load, no shared data yet */}
+  try{
+    const ni=await window.storage.get(STORE_NEXTID,true);
+    if(ni&&ni.value) nextId=parseInt(ni.value)||9;
+  }catch(e){}
+  try{
+    const or=await window.storage.get(STORE_ORDERS,true);
+    if(or&&or.value){
+      const parsed=JSON.parse(or.value);
+      if(Array.isArray(parsed)) orders=parsed;
+    }
+  }catch(e){}
+  renderProds(products);
+}
+
+async function saveSharedProducts(){
+  try{
+    await window.storage.set(STORE_KEY,JSON.stringify(products),true);
+    await window.storage.set(STORE_NEXTID,String(nextId),true);
+  }catch(e){console.error('Storage save failed',e);}
+}
+
+async function saveSharedOrders(){
+  try{
+    await window.storage.set(STORE_ORDERS,JSON.stringify(orders),true);
+  }catch(e){console.error('Order save failed',e);}
+}
+
+// Load shared data on start
+loadSharedData();
+const CRED={u:'admin',p:btoa('rry@2025admin')};
+let selPM='upi',selBank_='',curStep=1;
+
+// ═══ NAVIGATION ═══
+function showPage(pg){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const map={'home':'home','shop':'shop','product-detail':'product-detail','cart':'cart',
+    'checkout':'checkout','success':'success','admin-login':'admin-login','admin':'admin-panel'};
+  const el=document.getElementById(map[pg]||pg);
+  if(el){el.classList.add('active');window.scrollTo(0,0);}
+  if(pg==='shop') renderProds(products);
+  if(pg==='cart') renderCart();
+  if(pg==='checkout') initCheckout();
+  if(pg==='admin') renderAdmin();
+  document.getElementById('navLinks').classList.remove('open');
+  // Show only Shop link on home page; show all on other pages
+  const onHome = pg==='home';
+  const navHome=document.getElementById('navHome');
+  const navCart=document.getElementById('navCart');
+  if(navHome) navHome.style.display = onHome ? 'none' : '';
+  if(navCart) navCart.style.display = onHome ? 'none' : '';
+}
+// Init nav state on load
+document.addEventListener('DOMContentLoaded',function(){
+  const navHome=document.getElementById('navHome');
+  const navCart=document.getElementById('navCart');
+  if(navHome) navHome.style.display='none';
+  if(navCart) navCart.style.display='none';
+});
+function toggleNav(){document.getElementById('navLinks').classList.toggle('open');}
+function toast(msg,type=''){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.className='toast '+type;
+  void t.offsetWidth;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3200);
+}
+
+// ═══ PRODUCTS ═══
+function renderProds(list){
+  const g=document.getElementById('prodGrid');
+  if(!list.length){g.innerHTML='<div style="text-align:center;padding:5rem;color:var(--gray);grid-column:1/-1"><h2 style="font-family:Cormorant Garamond,serif;font-size:2rem;margin-bottom:0.8rem">No products found</h2><p>Try adjusting your filters.</p></div>';return;}
+  g.innerHTML=list.map(p=>`
+    <div class="p-card" onclick="viewProd(${p.id})">
+      <div class="p-img">
+        ${p.img?`<img src="${p.img}" alt="${p.name}">`:`<div class="p-ph">◈</div>`}
+        <div class="p-ov"><div class="p-ov-btns">
+          <button class="p-ob1" onclick="event.stopPropagation();qAdd(${p.id})">Cart</button>
+          <button class="p-ob2" onclick="event.stopPropagation();qBuy(${p.id})">Buy Now</button>
+        </div></div>
+        ${p.stock<10?'<div class="p-bdg">Low Stock</div>':''}
+      </div>
+      <div class="p-info">
+        <div class="p-cat">${p.category||'Fashion'}</div>
+        <div class="p-name">${p.name}</div>
+        <div class="p-price">₹${p.price.toLocaleString()}</div>
+        <div class="p-szs">${p.sizes.map(s=>`<span class="sz">${s}</span>`).join('')}</div>
+      </div>
+    </div>`).join('');
+}
+function viewProd(id){
+  const p=products.find(x=>x.id===id);if(!p)return;
+  document.getElementById('detContent').innerHTML=`
+    <div class="d-img">${p.img?`<img src="${p.img}" alt="${p.name}">`:`<div class="d-ph">◈</div>`}</div>
+    <div class="d-info">
+      <div class="d-cat">${p.category||'Fashion'}</div>
+      <div class="d-name">${p.name}</div>
+      <div class="d-price">₹${p.price.toLocaleString()}</div>
+      <hr class="d-div">
+      <div class="d-desc">${p.desc}</div>
+      <div><div class="d-sz-lbl">Select Size</div><div class="d-szs" id="dSzs">${p.sizes.map(s=>`<div class="d-sz" onclick="selSz(this,'${s}')">${s}</div>`).join('')}</div></div>
+      <div class="d-qty-row"><div class="d-qty-lbl">Qty</div>
+        <div class="qty-c"><button onclick="chgQty(-1)">−</button><input type="number" id="dQty" value="1" min="1" max="${p.stock}"><button onclick="chgQty(1)">+</button></div>
+        <span class="d-stock">${p.stock} in stock</span>
+      </div>
+      <div class="d-acts">
+        <button class="d-act d-ac" onclick="addDet(${p.id})">Add to Cart</button>
+        <button class="d-act d-ab" onclick="buyNow(${p.id})">Buy Now →</button>
+      </div>
+    </div>`;
+  window._sz=null;showPage('product-detail');
+}
+function selSz(el,s){document.querySelectorAll('.d-sz').forEach(x=>x.classList.remove('sel'));el.classList.add('sel');window._sz=s;}
+function chgQty(d){const i=document.getElementById('dQty');i.value=Math.max(1,parseInt(i.value)+d);}
+function addDet(id){
+  const p=products.find(x=>x.id===id);
+  if(!window._sz){toast('Please select a size','err');return;}
+  addToCart(p,window._sz,parseInt(document.getElementById('dQty').value)||1);
+  toast(p.name+' added to cart!','ok');
+}
+function buyNow(id){
+  const p=products.find(x=>x.id===id);
+  addToCart(p,window._sz||p.sizes[0],parseInt(document.getElementById('dQty')?document.getElementById('dQty').value:1)||1);
+  showPage('checkout');
+}
+function qAdd(id){const p=products.find(x=>x.id===id);addToCart(p,p.sizes[0],1);toast(p.name+' added!','ok');}
+function qBuy(id){qAdd(id);showPage('checkout');}
+function addToCart(p,size,qty){
+  const ex=cart.find(x=>x.id===p.id&&x.size===size);
+  if(ex)ex.qty+=qty;else cart.push({id:p.id,name:p.name,price:p.price,size,qty,img:p.img});
+  updateBadge();
+}
+function updateBadge(){document.getElementById('cartBadge').textContent=cart.reduce((s,x)=>s+x.qty,0);}
+
+// ═══ CART ═══
+function renderCart(){
+  const ci=document.getElementById('cartItems'),cs=document.getElementById('cartSummary');
+  if(!cart.length){ci.innerHTML='<div class="empty-msg"><h2>Your cart is empty</h2><p>Add beautiful pieces from our collection.</p><button class="btn-gold" onclick="showPage(\'shop\')">Start Shopping</button></div>';cs.innerHTML='';return;}
+  ci.innerHTML=cart.map((it,i)=>`
+    <div class="ci">
+      <div class="ci-img">${it.img?`<img src="${it.img}">`:'◈'}</div>
+      <div class="ci-info"><div class="ci-name">${it.name}</div><div class="ci-sz">Size: ${it.size}</div><div class="ci-pr">₹${it.price.toLocaleString()} each</div></div>
+      <div class="ci-r">
+        <div class="ci-qty"><button onclick="cqty(${i},-1)">−</button><span>${it.qty}</span><button onclick="cqty(${i},1)">+</button></div>
+        <div class="ci-tot">₹${(it.price*it.qty).toLocaleString()}</div>
+        <button class="ci-rm" onclick="rmItem(${i})">✕ Remove</button>
+      </div>
+    </div>`).join('');
+  const sub=cart.reduce((s,x)=>s+x.price*x.qty,0),ship=sub>=999?0:99,tot=sub+ship;
+  cs.innerHTML=`<div class="sum-box"><div class="sum-row"><span>Subtotal</span><span>₹${sub.toLocaleString()}</span></div><div class="sum-row"><span>Shipping</span><span>${ship===0?'<span style="color:var(--success);font-weight:600">FREE</span>':'₹'+ship}</span></div><div class="sum-row tot"><span>Total</span><span>₹${tot.toLocaleString()}</span></div><button class="sum-co" onclick="showPage('checkout')">Proceed to Secure Checkout →</button>${sub<999?`<p style="font-size:0.78rem;color:var(--success);text-align:center;margin-top:0.7rem">Add ₹${(999-sub).toLocaleString()} more for FREE shipping</p>`:''}</div>`;
+}
+function cqty(i,d){cart[i].qty=Math.max(1,cart[i].qty+d);updateBadge();renderCart();}
+function rmItem(i){cart.splice(i,1);updateBadge();renderCart();}
+
+// ═══ FILTERS ═══
+function applyFilters(){
+  const pf=document.getElementById('priceFilter').value,sf=document.getElementById('sizeFilter').value;
+  let list=[...products];
+  if(pf){if(pf==='2000+')list=list.filter(p=>p.price>=2000);else{const[mn,mx]=pf.split('-').map(Number);list=list.filter(p=>p.price>=mn&&p.price<=mx);}}
+  if(sf)list=list.filter(p=>p.sizes.includes(sf));
+  renderProds(list);
+}
+function resetFilters(){document.getElementById('priceFilter').value='';document.getElementById('sizeFilter').value='';renderProds(products);}
+
+// ═══ CHECKOUT — STEP BY STEP ═══
+let ckoStep=1;
+
+function initCheckout(){
+  if(!cart.length){toast('Your cart is empty!','err');showPage('cart');return;}
+  ckoStep=1;
+  ckoRenderStep1();
+  ckoSetProgress(1);
+}
+
+function ckoSetProgress(step){
+  for(let i=1;i<=5;i++){
+    const stp=document.getElementById('cstp'+i);
+    const dot=document.getElementById('cdot'+i);
+    if(!stp) continue;
+    stp.classList.remove('active','done');
+    if(i<step){stp.classList.add('done');dot.textContent='✓';}
+    else if(i===step){stp.classList.add('active');dot.textContent=i===5?'✓':i;}
+    else{dot.textContent=i===5?'✓':i;}
+  }
+}
+
+function ckoGo(n){
+  // hide all panels
+  document.querySelectorAll('.cko-panel').forEach(p=>p.classList.remove('active'));
+  const panel=document.getElementById('cpanel'+n);
+  if(panel){panel.classList.add('active');}
+  ckoStep=n;
+  ckoSetProgress(n);
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(n===1) ckoRenderStep1();
+  if(n===3) ckoRenderStep3();
+}
+
+function ckoRenderStep1(){
+  const sub=cart.reduce((s,x)=>s+x.price*x.qty,0);
+  const ship=sub>=999?0:99,tot=sub+ship;
+  const el=document.getElementById('ckItems');
+  if(!el) return;
+  el.innerHTML=cart.map(it=>`
+    <div class="ck-item">
+      <div class="ck-thumb">${it.img?`<img src="${it.img}" onerror="this.parentNode.textContent='👗'">`:'👗'}</div>
+      <div>
+        <div class="ck-iname">${it.name}</div>
+        <div class="ck-isub">Size: ${it.size} &nbsp;·&nbsp; Qty: ${it.qty}</div>
+      </div>
+      <div class="ck-iprice">₹${(it.price*it.qty).toLocaleString()}</div>
+    </div>`).join('');
+  const sm=document.getElementById('ckSum');
+  if(sm) sm.innerHTML=`
+    <div class="ck-srow"><span>Subtotal</span><span>₹${sub.toLocaleString()}</span></div>
+    <div class="ck-srow"><span>Shipping</span><span>${ship===0?'<span style="color:#00e066;font-weight:700">FREE</span>':'₹'+ship}</span></div>
+    <div class="ck-srow grand"><span>Total Payable</span><span>₹${tot.toLocaleString()}</span></div>`;
+}
+
+function ckoValidateDelivery(){
+  const name=document.getElementById('ckName').value.trim();
+  const phone=document.getElementById('ckPhone').value.trim();
+  const addr=document.getElementById('ckAddr').value.trim();
+  if(!name){toast('Please enter your full name','err');document.getElementById('ckName').focus();return;}
+  if(!phone||!/^\d{10}$/.test(phone)){toast('Enter a valid 10-digit phone number','err');document.getElementById('ckPhone').focus();return;}
+  if(!addr){toast('Please enter your delivery address','err');document.getElementById('ckAddr').focus();return;}
+  ckoGo(3);
+}
+
+function ckoRenderStep3(){
+  const sub=cart.reduce((s,x)=>s+x.price*x.qty,0);
+  const ship=sub>=999?0:99,tot=sub+ship;
+  // Update amount display
+  const ad=document.getElementById('ckAmtDisplay');
+  if(ad) ad.textContent=tot.toLocaleString();
+  // Build UPI deep link with live amount
+  const upiLink=`upi://pay?pa=9247850060@paytm&pn=RRY%20Fashion&am=${tot}&cu=INR&tn=RRY%20Fashion%20Order`;
+  const btn=document.getElementById('ckUpiBtn');
+  if(btn) btn.href=upiLink;
+  // Delivery pill
+  const name=document.getElementById('ckName')?document.getElementById('ckName').value:'';
+  const phone=document.getElementById('ckPhone')?document.getElementById('ckPhone').value:'';
+  const addr=document.getElementById('ckAddr')?document.getElementById('ckAddr').value:'';
+  const city=document.getElementById('ckCity')?document.getElementById('ckCity').value:'';
+  const dn=document.getElementById('ckDelName');
+  const da=document.getElementById('ckDelAddr');
+  if(dn) dn.textContent=name+' · '+phone;
+  if(da) da.textContent=addr+(city?', '+city:'');
+}
+
+function ckoOpenUPI(e){
+  toast('🚀 Opening your UPI app…','ok');
+}
+
+function ckoGoRef(){
+  // Called when "I've Paid" tapped on payment screen
+  // Update amount on ref panel
+  const sub=cart.reduce((s,x)=>s+x.price*x.qty,0);
+  const tot=sub+(sub>=999?0:99);
+  const rad=document.getElementById('refAmtDisplay');
+  if(rad) rad.textContent=tot.toLocaleString();
+  ckoGo(4);
+}
+
+function ckoFormatRef(input){
+  // Allow only digits, max 22 chars
+  input.value=input.value.replace(/[^0-9A-Za-z]/g,'');
+  const st=document.getElementById('refStatus');
+  if(!st) return;
+  const v=input.value.trim();
+  if(v.length===0){st.textContent='';st.className='ref-status';}
+  else if(v.length<8){st.textContent='Reference numbers are usually 12+ digits';st.className='ref-status err';}
+  else{st.textContent='✓ Reference number looks valid';st.className='ref-status ok';}
+}
+
+function ckoConfirm(){
+  // Validate UPI ref
+  const ref=document.getElementById('ckUpiRef')?document.getElementById('ckUpiRef').value.trim():'';
+  if(!ref||ref.length<6){
+    toast('Please enter your UPI Reference / Transaction ID','err');
+    document.getElementById('ckUpiRef')&&document.getElementById('ckUpiRef').focus();
+    return;
+  }
+  const name=document.getElementById('ckName').value.trim();
+  const phone=document.getElementById('ckPhone').value.trim();
+  const addr=document.getElementById('ckAddr').value.trim();
+  if(!name||!phone||!addr){toast('Please go back and fill delivery details','err');return;}
+  // Store ref in window for use in ckoFinish
+  window._upiRef=ref;
+  // Show processing animation
+  ckoShowProcessing();
+}
+
+function ckoShowProcessing(){
+  // Hide panel 3, show processing overlay
+  document.querySelectorAll('.cko-panel').forEach(p=>p.classList.remove('active'));
+  const proc=document.getElementById('cpanelProc');
+  if(proc){proc.classList.add('active');ckoSetProgress(5);}
+
+  const steps=[
+    {id:'psi1',text:'Validating order details…'},
+    {id:'psi2',text:'Securing your transaction…'},
+    {id:'psi3',text:'Confirming payment with merchant…'},
+    {id:'psi4',text:'Generating order confirmation…'},
+    {id:'psi5',text:'All done! Preparing your receipt…'},
+  ];
+
+  let i=0;
+  function tick(){
+    if(i>0){
+      const prev=document.getElementById(steps[i-1].id);
+      if(prev){prev.classList.remove('psi-active');prev.classList.add('psi-done');}
+    }
+    if(i<steps.length){
+      const cur=document.getElementById(steps[i].id);
+      if(cur){cur.classList.add('psi-active');}
+      const lbl=document.getElementById('psiLabel');
+      if(lbl) lbl.textContent=steps[i].text;
+      i++;
+      setTimeout(tick,900);
+    } else {
+      setTimeout(ckoFinish,600);
+    }
+  }
+  tick();
+}
+
+function ckoFinish(){
+  const name=document.getElementById('ckName').value.trim();
+  const email=document.getElementById('ckEmail')?document.getElementById('ckEmail').value.trim():'';
+  const phone=document.getElementById('ckPhone').value.trim();
+  const addr=document.getElementById('ckAddr').value.trim();
+  const city=document.getElementById('ckCity')?document.getElementById('ckCity').value:'';
+  const sub=cart.reduce((s,x)=>s+x.price*x.qty,0);
+  const ship=sub>=999?0:99,tot=sub+ship;
+  const oid='RRY'+Date.now().toString().slice(-6);
+
+  const upiRef=window._upiRef||'—';
+  orders.push({id:oid,customer:name,email,phone,address:addr,
+    city,items:[...cart],total:tot,
+    payMethod:'UPI (9247850060@paytm)',upiRef,
+    status:'Processing',date:new Date().toLocaleDateString('en-IN')});
+  saveSharedOrders();
+
+  // Update success panel
+  const sref=document.getElementById('cpSuccessRef');
+  if(sref) sref.textContent=window._upiRef||'—';
+  const soid=document.getElementById('cpSuccessOid');
+  if(soid) soid.textContent='ORDER #'+oid;
+  const sname=document.getElementById('cpSuccessName');
+  if(sname) sname.textContent=name;
+  const samt=document.getElementById('cpSuccessAmt');
+  if(samt) samt.textContent='₹'+tot.toLocaleString();
+  const sdate=document.getElementById('cpSuccessDate');
+  if(sdate) sdate.textContent=new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
+
+  document.getElementById('successOid').textContent='ORDER #'+oid;
+  cart=[];updateBadge();
+
+  // Show inline success
+  document.querySelectorAll('.cko-panel').forEach(p=>p.classList.remove('active'));
+  const sp=document.getElementById('cpanelSuccess');
+  if(sp){sp.classList.add('active');}
+  toast('Order confirmed! Thank you 🎉','ok');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ═══ ADMIN ═══// ═══ ADMIN ═══
+function doLogin(){
+  const u=document.getElementById('alUser').value,p=document.getElementById('alPass').value;
+  if(u===CRED.u&&btoa(p)===CRED.p){isAdmin=true;document.getElementById('adminLink').style.display='none';document.getElementById('logoutLink').style.display='block';document.getElementById('alErr').style.display='none';showPage('admin');}
+  else{document.getElementById('alErr').style.display='block';}
+}
+function doLogout(){isAdmin=false;document.getElementById('adminLink').style.display='';document.getElementById('logoutLink').style.display='none';showPage('home');}
+function renderAdmin(){
+  if(!isAdmin){showPage('admin-login');return;}
+  renderStats();renderProdTable();renderOrdsAdmin();
+}
+function renderStats(){
+  const rev=orders.reduce((s,o)=>s+o.total,0);
+  document.getElementById('statsRow').innerHTML=`
+    <div class="stat-box"><div class="stat-lbl">Products</div><div class="stat-val">${products.length}</div></div>
+    <div class="stat-box"><div class="stat-lbl">Orders</div><div class="stat-val">${orders.length}</div></div>
+    <div class="stat-box"><div class="stat-lbl">Revenue</div><div class="stat-val" style="font-size:1.5rem">₹${rev.toLocaleString()}</div></div>
+    <div class="stat-box"><div class="stat-lbl">Cart Items</div><div class="stat-val">${cart.reduce((s,x)=>s+x.qty,0)}</div></div>`;
+  const rl=document.getElementById('recentOrds');
+  if(!orders.length){rl.innerHTML='<p style="color:var(--gray)">No orders yet.</p>';return;}
+  rl.innerHTML=orders.slice().reverse().slice(0,5).map(o=>`
+    <div class="ord-card"><div class="oc-l"><h4>${o.id}</h4><p>${o.customer}</p></div>
+    <div class="oc-r"><div class="oc-amt">₹${o.total.toLocaleString()}</div>
+    <div class="oc-pmt">${o.payMethod}</div><span class="badge bp">${o.status}</span></div></div>`).join('');
+}
+function renderProdTable(){
+  document.getElementById('prodTbody').innerHTML=products.map(p=>`
+    <tr><td><strong>${p.name}</strong><br><span style="font-size:0.72rem;color:var(--gray)">${p.category||''}</span></td>
+    <td>₹${p.price.toLocaleString()}</td><td>${p.sizes.join(', ')}</td><td>${p.stock}</td>
+    <td><button class="tbtn te" onclick="editP(${p.id})">Edit</button><button class="tbtn td" onclick="delP(${p.id})">Delete</button></td></tr>`).join('');
+}
+function renderOrdsAdmin(){
+  const c=document.getElementById('ordsList');
+  if(!orders.length){c.innerHTML='<p style="color:var(--gray)">No orders yet.</p>';return;}
+  c.innerHTML=orders.slice().reverse().map((o,ri)=>{
+    const idx=orders.length-1-ri;
+    return `<div class="ord-card"><div class="oc-l"><h4>${o.id}</h4><p>${o.customer} · ${o.phone}</p><p>${o.address}${o.city?', '+o.city:''}</p><div class="oc-items">${o.items.map(i=>`${i.name}(${i.size})×${i.qty}`).join(' | ')}</div></div><div class="oc-r"><div class="oc-amt">₹${o.total.toLocaleString()}</div><div class="oc-date">${o.date}</div><div class="oc-pmt">${o.payMethod}</div><select class="o-sel" onchange="updStatus(${idx},this.value)"><option ${o.status==='Processing'?'selected':''}>Processing</option><option ${o.status==='Shipped'?'selected':''}>Shipped</option><option ${o.status==='Delivered'?'selected':''}>Delivered</option></select></div></div>`;
+  }).join('');
+}
+function updStatus(i,s){orders[i].status=s;toast('Status updated!','ok');}
+function editP(id){
+  const p=products.find(x=>x.id===id);
+  document.getElementById('pN').value=p.name;document.getElementById('pP').value=p.price;
+  document.getElementById('pD').value=p.desc;document.getElementById('pSt').value=p.stock;
+  document.getElementById('pCt').value=p.category||'';document.getElementById('pEid').value=id;
+  document.getElementById('pFormTitle').textContent='Edit Product';
+  document.querySelectorAll('.pSz').forEach(cb=>cb.checked=p.sizes.includes(cb.value));
+  if(p.img){const pv=document.getElementById('imgPv');pv.src=p.img;pv.style.display='block';}
+  switchTab('ap-add',document.querySelectorAll('.ap-tab')[3]);
+}
+function delP(id){if(!confirm('Delete this product?'))return;products=products.filter(x=>x.id!==id);saveSharedProducts();renderProdTable();toast('Deleted — removed for all users','err');}
+function saveProd(){
+  const name=document.getElementById('pN').value.trim(),price=parseFloat(document.getElementById('pP').value);
+  const desc=document.getElementById('pD').value.trim(),stock=parseInt(document.getElementById('pSt').value);
+  const cat=document.getElementById('pCt').value.trim(),sizes=[...document.querySelectorAll('.pSz:checked')].map(c=>c.value);
+  const eid=parseInt(document.getElementById('pEid').value);
+  const ipv=document.getElementById('imgPv'),img=ipv.style.display!=='none'&&ipv.src?ipv.src:null;
+  if(!name||!price||!sizes.length||!stock){toast('Fill all required fields','err');return;}
+  if(eid){const i=products.findIndex(x=>x.id===eid);products[i]={...products[i],name,price,desc,stock,category:cat,sizes,img};toast('Updated! Changes visible to all users ✓','ok');}
+  else{products.push({id:nextId++,name,price,desc,stock,category:cat,sizes,img});toast('Product added! Visible to all users ✓','ok');}
+  saveSharedProducts();
+  cancelEdit();renderProdTable();switchTab('ap-prods',document.querySelectorAll('.ap-tab')[1]);
+}
+function cancelEdit(){
+  ['pN','pP','pD','pSt','pCt','pEid'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('pFormTitle').textContent='Add New Product';
+  document.querySelectorAll('.pSz').forEach(cb=>cb.checked=false);
+  const pv=document.getElementById('imgPv');pv.src='';pv.style.display='none';
+}
+function switchTab(id,el){
+  document.querySelectorAll('.ap-sec').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.ap-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');el.classList.add('active');
+  if(id==='ap-dash')renderStats();
+  if(id==='ap-prods')renderProdTable();
+  if(id==='ap-orders')renderOrdsAdmin();
+}
+function prevImg(inp){
+  if(inp.files&&inp.files[0]){const r=new FileReader();r.onload=e=>{const pv=document.getElementById('imgPv');pv.src=e.target.result;pv.style.display='block';};r.readAsDataURL(inp.files[0]);}
+}
+
+// INIT
+document.getElementById('adminLink').style.display='';
+// Products rendered after shared data loads (see loadSharedData)
+
+// ═══ PROCESS SECTION SCROLL ANIMATION ═══
+(function(){
+  function initProcess(){
+    const steps=document.querySelectorAll('.proc-step');
+    const fill=document.getElementById('timelineFill');
+    const section=document.getElementById('processSection');
+    if(!steps.length) return;
+
+    const io=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('visible');
+        }
+      });
+    },{threshold:0.25});
+
+    steps.forEach(s=>io.observe(s));
+
+    // Timeline fill on scroll
+    if(fill&&section){
+      window.addEventListener('scroll',()=>{
+        const rect=section.getBoundingClientRect();
+        const winH=window.innerHeight;
+        const pct=Math.max(0,Math.min(100,
+          ((winH-rect.top)/(rect.height+winH))*160
+        ));
+        fill.style.height=pct+'%';
+      },{passive:true});
+    }
+  }
+  // Run when home becomes active
+  const orig=window.showPage;
+  if(typeof orig==='function'){
+    window.showPage=function(pg){
+      orig(pg);
+      if(pg==='home') setTimeout(initProcess,50);
+    };
+  }
+  // Also run on initial load
+  document.addEventListener('DOMContentLoaded',initProcess);
+  setTimeout(initProcess,200);
+})();
+
+
+// ═══ SPLASH ANIMATION ═══
+(function(){
+  const splash = document.getElementById('splash');
+  if(!splash) return;
+  // Fill letters with gold after they arrive
+  setTimeout(function(){
+    document.querySelectorAll('.sp-r1,.sp-r2,.sp-y').forEach(function(el){
+      el.classList.add('filled');
+    });
+  }, 1100);
+  // Dismiss splash
+  setTimeout(function(){
+    splash.classList.add('hide');
+    document.body.classList.remove('splashing');
+    document.body.classList.add('splash-done');
+  }, 2600);
+  // Remove from DOM after transition
+  setTimeout(function(){
+    splash.remove();
+    document.body.className = document.body.className.replace('splash-done','').trim();
+  }, 3500);
+})();
+
+</script>
+</body>
+</html>
